@@ -1,0 +1,65 @@
+---
+layout: post
+title: RESTFul Web Service - Seam Component Injection
+date: '2014-03-11T02:38:00.001-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+tags: 
+modified_time: '2014-03-11T02:38:56.239-07:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-1453944186791536306
+blogger_orig_url: http://java-bytes.blogspot.com/2014/03/restful-web-service-seam-component.html
+---
+
+If you have to incorporate a RESTFul webservice into an existing (or new) Web application, which uses SEAM as one of the technologies in it's tech-stack, then you probably want to use Seam component injections in your RESTFul webservice.
+
+<br /><br />
+
+If your RESTFul service's URI's are something like:  
+<br /><br />
+
+{% highlight xml %}
+    a) GET   /rest/api/get?id=1&user=test
+    b) POST   /rest/api/create
+    c) PUT   /rest/api/update
+    d) PUT   /rest/api/delete
+{% endhighlight %}
+
+Then, for the Seam injections to work, you need to add a 'Seam Web Context filter' in your Webapp's Seam components.xml file, as shown below:
+<br /><br />
+
+{% highlight xml %}
+<web:context-filter url-pattern="/rest/api/*"/>
+{% endhighlight %}
+
+An alternative to adding web:context-filter is to add a 'Seam Servlet Filter' in web.xml of your web application, as shown below:
+
+<br /><br />
+
+{% highlight xml %}
+<filter> 
+    <filter-name>Seam Servlet Filter</filter-name> 
+    <filter-class>org.jboss.seam.servlet.SeamServletFilter</filter-class> 
+</filter>
+<filter-mapping> 
+    <filter-name>Seam Servlet Filter</filter-name> 
+    <url-pattern>/rest/*</url-pattern> 
+</filter-mapping>
+{% endhighlight %}
+
+The reason you need to add these filters is to make Seam intercept your request, initialize itself and then allow the injections to work. Similarly, EJB interceptors are needed for injections to work in EJB's. As for JSF pages, Seam uses EL Resolvers for dependency injections. These EL Resolvers are installed by default, when Seam's libraries (jars) are included in the classpath.<br /><br />BTW, depending on how I use the Seam component, instead of using @In, I prefer using Component.getInstance("seamComp");<br /><br />If you are using multiple URL patterns (different URI's) for which you want Seam injections to work, you can use "regex-url-pattern". For example, if you have want to create a new SOAP webservice, along with your RESTFul service...and you want the Seam injections to work in both the services, you can simply use the 'regex-url-pattern' attribute for 'web:context-filter' tag. 
+
+<br/><br/>
+Example:  <br />
+
+<b>SOAP Service URI</b> :  TestSOAPService   (Enpoint Address URI:   webappContext/TestSOAPService)
+<br />
+<b>REST API URI's</b> : /rest/api/*<br /><br />
+
+Then, your 'web:context-filter' tag in Seam components.xml file should look like:
+
+<br /><br />
+
+{% highlight xml %}
+<web:context-filter regex-url-pattern="/rest/api/.*|/TestSOAPService"/>
+{% endhighlight %}

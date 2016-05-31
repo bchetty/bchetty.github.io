@@ -1,0 +1,45 @@
+---
+layout: post
+title: Software Job - Interview Question
+date: '2010-06-19T16:09:00.000-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- math
+- puzzles
+tags:
+- babji chetty
+- chetty prashanth
+- math interview questions
+- Amazon interview question
+- math puzzle
+- software job interview
+modified_time: '2011-02-24T11:31:19.842-08:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-2206594485969747610
+blogger_orig_url: http://java-bytes.blogspot.com/2010/06/software-job-interview-question.html
+---
+
+Today, I was searching for some technical articles and stumbled upon this interview question from Amazon, for which 
+I could immediately think about some good solution. Here's the question: 
+
+<br /><br />
+
+{% highlight xml %}
+We have numbers from 1 to 52 that are put into a 51 number array, what's the best way to find out which number is missing?
+{% endhighlight %}
+<br />
+
+I read an answer from some guy, who said to sort the numbers first and then loop through and find the number. 
+I thought that was inefficient way of doing that. My answer is as below:
+
+<br /><br />
+
+{% highlight xml %}
+1) Calculate the sum of all numbers stored in the array of size 51
+
+2) Subtract the sum from (52 * 53)/2 &amp;nbsp; -- Formula : n * (n+1)/2
+
+The result of subtraction is the answer for this question.
+{% endhighlight %}
+<br />
+
+Any other solutions that you know of?!?!?!

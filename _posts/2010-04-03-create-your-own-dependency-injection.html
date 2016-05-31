@@ -1,0 +1,311 @@
+---
+layout: post
+title: Create Your Own Dependency Injection Framework
+date: '2010-04-02T18:24:00.000-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+- projects
+tags:
+- google guice
+- loose coupling
+- create java annotations
+- java reflection
+- Create Your Own Dependency Injection Framework
+- java
+modified_time: '2011-02-24T12:28:41.498-08:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-3318467588118401433
+blogger_orig_url: http://java-bytes.blogspot.com/2010/04/create-your-own-dependency-injection.html
+---
+
+Inspired by the latest developments in Java and other open source frameworks like Guice, today I worked for a couple of hours 
+on creating a small dependency injection framework (on the lines of guice), which I named it as 'Funny Dependency Injection' framework. 
+This framework has only one custom annotation, which annotates a constructor, to provide dependency injection (only constructor 
+injection in this example). 
+<br /><br />
+Here's the code for the <b>'Shoot'</b> annotation:
+<br /><br />
+<b>Shoot.java</b>
+<br />
+{% highlight java %}
+package com.chetty.shoot;
+
+import java.lang.annotation.Documented;
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import java.lang.annotation.Retention;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import java.lang.annotation.Target;
+
+@Target({ METHOD, CONSTRUCTOR, FIELD })
+@Retention(RUNTIME)
+@Documented
+public @interface Shoot {}
+{% endhighlight %}
+
+<br />
+
+And here's the client class, for which the 'Shoot' annotation is used:
+<br /><br /><b>Client.java</b><br />
+
+{% highlight java %}
+package com.chetty.client;
+
+import com.chetty.service.NewService;
+import com.chetty.service.Service;
+import com.chetty.shoot.Shoot;
+
+public class Client {
+	private Service service;
+	private NewService newService;
+	
+	@Shoot
+	public Client(Service service, NewService newService) {
+		this.service = service;
+		this.newService = newService;
+	}
+	
+	public void doSomething() {
+		service.serve();
+		newService.doSomethingNew();
+	}
+}
+{% endhighlight %}
+
+<br />
+
+In the above class, you can see the 2 parameters for Client's constructor. 
+These dependencies will be injected at runtime, with the help of "Shoot" annotation.
+ 
+The 'Service' and the 'NewService' interfaces are listed below:
+<br /><br /><b>Service.java</b><br />
+
+{% highlight java %}
+package com.chetty.service;
+
+public interface Service {
+ public void doSomething();
+}
+{% endhighlight %}
+
+<br /><br /><b>NewService.java</b><br />
+
+{% highlight java %}
+package com.chetty.service;
+
+public interface NewService {
+	public void doSomethingNew();
+}
+{% endhighlight %}
+<br /><br />And here are 2 implementations of 'Service' interface:
+
+<br /><br /><b>ServiceImpl1.java</b><br />
+
+{% highlight java %}
+package com.chetty.service;
+
+public class ServiceImpl1 implements Service {
+ @Override
+ public void doSomething() {
+  System.out.println("I'm doing something in ServiceImpl1");  
+ }
+}
+{% endhighlight %}
+
+<br/><br /><b>ServiceImpl2.java</b><br />
+
+{% highlight java %}
+package com.chetty.service;
+
+public class ServiceImpl2 implements Service {
+ @Override
+ public void doSomething() {
+  System.out.println("I'm doing something in ServiceImpl2");  
+ }
+}
+{% endhighlight %}
+
+<br /><br />And here's an implementation for 'NewService' interface:
+<br /><br /><b>NewServiceImpl1.java</b><br />
+
+{% highlight java %}
+package com.chetty.service;
+
+public class NewServiceImpl1 implements NewService {
+	@Override
+	public void doSomethingNew() {
+		System.out.println("I'm doing something new!");
+	}
+}
+{% endhighlight %}
+
+<br /><br />
+Below are 2 classes, which are part of this funnyDI framework..and which are used for configuration 
+(dependency mapping information):
+
+<br /><br /><b>IModule.java</b><br />
+
+{% highlight java %}
+package com.chetty.module;
+
+public interface IModule {
+	void configure();
+	<t> Class<? extends T> getMapping(Class<t> type);
+}
+{% endhighlight %}
+
+<br /><b>AbstractModule.java</b><br />
+
+{% highlight java %}
+package com.chetty.module;
+
+import java.util.HashMap;
+import java.util.Map;
+
+abstract class AbstractModule implements IModule {
+	private Map<Class<?>, Class<?>> classMap = new HashMap<Class<?>, Class<?>>();
+	
+	public abstract void configure();
+		
+	<t> void createMapping(Class<t> baseClass, Class<? extends T> subClass) {
+		classMap.put(baseClass, subClass.asSubclass(baseClass));
+	}
+		
+	public <t> Class<? extends T> getMapping(Class<t> type) {
+		Class<?> implementation = classMap.get(type);
+		
+	    if(implementation == null) 
+	      throw new IllegalArgumentException("Couldn't find the mapping for : " + type);
+	    
+	    return implementation.asSubclass(type);
+	}
+}
+{% endhighlight %}
+
+<br /><br />And below is the class used for configuration by the user of 'funnyDI' framework, to provide 
+configuration (dependency mapping information):
+
+<br /><br /><b>Module.java</b><br />
+
+{% highlight java %}
+package com.chetty.module;
+
+import com.chetty.service.NewService;
+import com.chetty.service.NewServiceImpl1;
+import com.chetty.service.Service;
+import com.chetty.service.ServiceImpl2;
+
+public class Module extends AbstractModule {
+	public void configure() {		
+		createMapping(Service.class, ServiceImpl2.class);
+		createMapping(NewService.class, NewServiceImpl1.class);
+	}
+}
+{% endhighlight %}
+
+<br /><br />And here's the core class of this funny dependency injection framework, which uses java reflection 
+to find the dependency and inject it:
+
+<br /><br /><b>Shooter.java</b><br />
+
+{% highlight java %}
+package com.chetty.shoot;
+
+import java.lang.reflect.Constructor;
+
+import com.chetty.module.IModule;
+
+public class Shooter {
+	private IModule module;
+	
+	public Shooter(IModule module) {
+		this.module = module;		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Object fireShot(Class klass) throws Exception {		
+		if(klass != null) {			
+			boolean flag = true;
+			int index = 0;
+			
+			for(Constructor constructor: klass.getConstructors()) {				
+				if(constructor.isAnnotationPresent(Shoot.class)) {
+					if(flag && index == 0) { //To restrict to only one constructor injection
+						flag = false;
+						index++;
+												
+						Class[] parameterTypes = constructor.getParameterTypes();
+						Object[] objArr = new Object[parameterTypes.length];
+						
+						int i = 0;
+						
+						for(Class c : parameterTypes) {
+							Class dependency = module.getMapping(c);
+																											
+							if(c.isAssignableFrom(dependency)) {								
+								objArr[i++] = dependency.getConstructor().newInstance();						
+							}
+						}
+						
+						Object resObj = klass.getConstructor(parameterTypes).newInstance(objArr);						
+						
+						return resObj;
+					}					
+				}
+			}
+		}
+		
+		return null;		
+	}
+}
+{% endhighlight %}
+
+<br /><br />There's one more class that is part of this funny DI framework, which initializes the configuration 
+(based on the configuration module used) and returns the 'Shooter' class, which further provides the dependency injection:
+
+<br /><br /><b>FunnyDI.java</b><br />
+{% highlight java %}
+package com.chetty.shoot;
+
+import com.chetty.module.IModule;
+
+public class FunnyDI {
+	public static Shooter getShooter(IModule module) {
+		module.configure();
+		return new Shooter(module);		
+	}
+}
+{% endhighlight %}
+
+<br /><br />And here's the main java class, which acts as a entry point for this funny application, which uses 
+'Funny Dependency Injection':
+
+<br /><b>FunnyApp.java</b><br />
+
+{% highlight java %}
+package com.chetty.funny;
+
+import com.chetty.client.Client;
+import com.chetty.module.Module;
+import com.chetty.shoot.FunnyDI;
+import com.chetty.shoot.Shooter;
+
+public class FunnyApp {
+	public static void main(String[] args) throws Exception {
+		Shooter shooter = FunnyDI.getShooter(new Module());
+		
+		Client client = (Client) shooter.fireShot(Client.class);
+		
+		client.doSomething();
+	}
+}
+{% endhighlight %}
+<br /><br />Thats it! When I ran the above program, "I'm doing something in ServiceImpl2" is printed, followed by 
+"I'm doing something new", in the next line.<br /><br />You can find the source code for this 
+funny DI framework on <a href="https://code.google.com/p/funnydi/source/browse/#svn/trunk">funnydi</a>. 
+
+If you have any funny comments, please don't hesitate to post! ;)
+
+<br /><br /><b>DISCLAIMER</b>: The code posted above was created for fun and to learn something new. 
+The above framework needs to be improvised a lot, if you want to implement it, in your own project. So, don't use it blindly.

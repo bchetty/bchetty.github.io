@@ -1,0 +1,22 @@
+---
+layout: post
+title: Compile Java Files At Runtime
+date: '2012-03-18T14:30:00.002-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+tags:
+- compile java source files at runtime
+- dynamic compilation
+- jsr 199
+- javax.tools package
+- java 6 compiler api
+modified_time: '2013-06-03T09:54:43.352-07:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-7186146868790600183
+blogger_orig_url: http://java-bytes.blogspot.com/2012/03/compile-java-files-at-runtime.html
+---
+
+Java 6 has a new Compiler API, as a result of <a href="http://jcp.org/en/jsr/detail?id=199">JSR 199</a>, which requests for a standard way to compile java source files. Although I use a lot of Java, I don't get to use some of the Java API's, as they are not required for the business functionality that I usually code. So, I was looking around for some new ideas or code to try and thought of working on a simple Java IDE and got to work on JavaCompiler class from javax.tools package of Java 6. Here's a naive example, that shows how to compile a Java source file at runtime:
+<br /><br /><br />
+
+<script src="https://gist.github.com/bchetty/5646188.js"></script>

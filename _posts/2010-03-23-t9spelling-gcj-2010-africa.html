@@ -1,0 +1,22 @@
+---
+layout: post
+title: T9Spelling - GCJ 2010 (Africa)
+date: '2010-03-23T20:48:00.013+01:00'
+author: Babji Prashanth, Chetty
+categories:
+- algos
+- programming
+tags:
+- google coding competitions
+- gcj 2010
+- google algorithms
+- babji p chetty
+- T9Spelling
+- africa
+- java algorithms
+modified_time: '2013-06-03T18:49:35.315+02:00'
+blogger_id: tag:blogger.com,1999:blog-8063665696479699369.post-7265755165126612834
+blogger_orig_url: http://google-tale.blogspot.com/2010/03/t9spelling-gcj-2010-africa.html
+---
+
+Below is a problem from the qualification round of 'Google Code Jam 2010 - Africa': <br /><blockquote><font color="green"><br />Problem<br />------- <br /><br />The Latin alphabet contains 26 characters and telephones only have ten digits on the keypad. We would like to make it easier to write a message to your friend using a sequence of keypresses to indicate the desired characters. The letters are mapped onto the digits as shown below. To insert the character B for instance, the program would press 22. In order to insert two characters in sequence from the same key, the user must pause before pressing the key a second time. The space character ' ' should be printed to indicate a pause. For example, 2 2 indicates AA whereas 22 indicates B. <br /><br />Input <br />-----<br /><br />The first line of input gives the number of cases, N. N test cases follow. Each case is a line of text formatted as: <br /><br />desired_message<br />---------------<br /><br />Each message will consist of only lowercase characters a-z and space characters ' '. Pressing zero emits a space. <br /><br />Output <br />------ <br /><br />For each test case, output one line containing "Case #x: " followed by the message translated into the sequence of keypresses. <br /><br />Limits <br />------ <br /><br />1 ≤ N ≤ 100. <br /><br />Small dataset <br />------------- <br /><br />1 ≤ length of message in characters ≤ 15. <br /><br />Large dataset <br />------------- <br /><br />1 ≤ length of message in characters ≤ 1000. <br /><br />Sample Input  <br />------------ <br /><br />4 <br />hi <br />yes <br />foo  bar <br />hello world <br /><br />Output  <br />------ <br /><br />Case #1: 44 444 <br />Case #2: 999337777 <br />Case #3: 333666 6660 022 2777 <br />Case #4: 4433555 555666096667775553 <br /></font><br /></blockquote><br />There's also a pictorial representation of the problem statement, which I didn't attach to this post. If you want, you can check the link: <a href="http://code.google.com/codejam/contest/dashboard?c=351101#s=p2">GCJ 2010 - T9Spelling</a> <br /><br />The solution for the above problem is pretty easy. Below is my Java solution: <br /><br /><script src="https://gist.github.com/bchetty/5639936.js"></script><br /><br />The solution for the above problem can be coded in a couple of other creative ways, but the above solution is fast and works good enough, although it has a trade-off in memory complexity (in the form of HashMap).

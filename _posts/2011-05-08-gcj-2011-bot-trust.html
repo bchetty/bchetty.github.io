@@ -1,0 +1,21 @@
+---
+layout: post
+title: GCJ 2011 - Bot Trust
+date: '2011-05-08T23:46:00.001+02:00'
+author: Babji Prashanth, Chetty
+categories:
+- algos
+- programming
+tags:
+- babji prashanth chetty
+- programming puzzles
+- programming competitions
+- bot trust problem
+- gcj 2011
+- google code jam 2011
+modified_time: '2013-06-03T18:48:24.983+02:00'
+blogger_id: tag:blogger.com,1999:blog-8063665696479699369.post-6192940678338054673
+blogger_orig_url: http://google-tale.blogspot.com/2011/05/gcj-2011-bot-trust.html
+---
+
+Below is the description of a problem called 'Bot Trust', from 'Google Code Jam - 2011':<br /><blockquote><font color="green"><br />Problem<br />-------<br /><br />Blue and Orange are friendly robots. An evil computer mastermind has locked them up in separate hallways to test them, and then possibly give them cake.<br /><br />Each hallway contains 100 buttons labeled with the positive integers {1, 2, ..., 100}. Button k is always k meters from the start of the hallway, and the robots both begin at button 1. Over the period of one second, a robot can walk one meter in either direction, or it can press the button at its position once, or it can stay at its position and not press the button. To complete the test, the robots need to push a certain sequence of buttons in a certain order. Both robots know the full sequence in advance. How fast can they complete it?<br /><br />For example, let's consider the following button sequence:<br /><br />O 2, B 1, B 2, O 4<br /><br />Here, O 2 means button 2 in Orange's hallway, B 1 means button 1 in Blue's hallway, and so on. The robots can push this sequence of buttons in 6 seconds using the strategy shown below:<br /><br />Time | Orange           | Blue<br />-----+------------------+-----------------<br />1  | Move to button 2 | Stay at button 1<br />2  | Push button 2    | Stay at button 1<br />3  | Move to button 3 | Push button 1<br />4  | Move to button 4 | Move to button 2<br />5  | Stay at button 4 | Push button 2<br />6  | Push button 4    | Stay at button 2<br /><br />Note that Blue has to wait until Orange has completely finished pushing O 2 before it can start pushing B 1.<br /><br />Input<br />-----<br /><br />The first line of the input gives the number of test cases, T. T test cases follow.<br /><br />Each test case consists of a single line beginning with a positive integer N, representing the number of buttons that need to be pressed. This is followed by N terms of the form "Ri Pi" where Ri is a robot color (always 'O' or 'B'), and Pi is a button position.<br /><br />Output<br />------<br /><br />For each test case, output one line containing "Case #x: y", where x is the case number (starting from 1) and y is the minimum number of seconds required for the robots to push the given buttons, in order.<br /><br />Limits<br />------<br /><br />1 ≤ Pi ≤ 100 for all i.<br /><br />Small dataset<br />-------------<br /><br />1 ≤ T ≤ 20.<br />1 ≤ N ≤ 10.<br /><br />Large dataset<br />-------------<br /><br />1 ≤ T ≤ 100.<br />1 ≤ N ≤ 100.<br /><br />Sample Input <br />------------<br />3<br />4 O 2 B 1 B 2 O 4<br />3 O 5 O 8 B 100<br />2 B 2 B 1<br /><br />Output <br />------<br /><br />Case #1: 6<br />Case #2: 100<br />Case #3: 4<br /></font><br /></blockquote><br />The solution to the problem can be easily coded, after understanding the fact that the robot (which was not scheduled to press the switch) can freely move to it's destination (next switch), so as to make the time required to solve the problem, as minimal as possible. Both the robots start at 1. So, for example, if one robot has to press the switch at 10 (first move), it takes 9 seconds (10 - 1) to move and 1 to press the switch...So, it takes a total of 10 seconds...In these 10 seconds, the other robot can move as long as possible and stay-put there, waiting for its turn. I used Java datastructures 'Queue' and 'Deque' to solve the problem.<br /><br />Below is my solution, in Java:<br /><br /><script src="https://gist.github.com/bchetty/5639744.js"></script>

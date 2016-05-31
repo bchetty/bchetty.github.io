@@ -1,0 +1,32 @@
+---
+layout: post
+title: GCJ 2013 - Fair And Square
+date: '2013-04-26T15:08:00.003+02:00'
+author: Babji Prashanth, Chetty
+categories:
+- algos
+- programming
+tags:
+- biginteger
+- Java
+- algorithms
+- palindromic square
+- google puzzles
+- disk based persistant map
+- disk cache
+- Babji
+- square
+- largeinteger
+- mapdb
+- fair
+- gcj 2013
+- google code jam 2013
+- chetty
+- Prashanth
+- jscience
+modified_time: '2013-06-03T18:47:05.753+02:00'
+blogger_id: tag:blogger.com,1999:blog-8063665696479699369.post-7544737558335215121
+blogger_orig_url: http://google-tale.blogspot.com/2013/04/gcj-2013-fair-and-square.html
+---
+
+Below is the problem statement for '<b>Fair And Square</b>' from 'Google Code Jam - 2013':<br /><br /><span style="color: green;"><br />Problem<br />-------<br /><br />Little John likes palindromes, and thinks them to be fair (which is a fancy word for nice). A palindrome is just an integer that reads the same backwards and forwards - so 6, 11 and 121 are all palindromes, while 10, 12, 223 and 2244 are not (even though 010=10, we don't consider leading zeroes when determining whether a number is a palindrome).<br /><br />He recently became interested in squares as well, and formed the definition of a fair and square number - it is a number that is a palindrome and the square of a palindrome at the same time. For instance, 1, 9 and 121 are fair and square (being palindromes and squares, respectively, of 1, 3 and 11), while 16, 22 and 676 are not fair and square: 16 is not a palindrome, 22 is not a square, and while 676 is a palindrome and a square number, it is the square of 26, which is not a palindrome.<br /><br />Now he wants to search for bigger fair and square numbers. Your task is, given an interval Little John is searching through, to tell him how many fair and square numbers are there in the interval, so he knows when he has found them all.<br /><br />Solving this problem<br />--------------------<br /><br />Usually, Google Code Jam problems have 1 Small input and 1 Large input. This problem has 1 Small input and 2 Large inputs. Once you have solved the Small input, you will be able to download any of the two Large inputs. As usual, you will be able to retry the Small input (with a time penalty), while you will get only one chance at each of the Large inputs.<br /><br />Input<br />-----<br /><br />The first line of the input gives the number of test cases, T. T lines follow. Each line contains two integers, A and B - the endpoints of the interval Little John is looking at.<br /><br />Output<br />------<br /><br />For each test case, output one line containing "Case #x: y", where x is the case number (starting from 1) and y is the number of fair and square numbers greater than or equal to A and smaller than or equal to B.<br /><br />Limits<br />------<br /><br />Small dataset<br />-------------<br /><br />1 ≤ T ≤ 100.<br />1 ≤ A ≤ B ≤ 1000.<br /><br />First large dataset<br />-------------------<br /><br />1 ≤ T ≤ 10000.<br />1 ≤ A ≤ B ≤ 1014.<br /><br />Second large dataset<br />--------------------<br /><br />1 ≤ T ≤ 1000.<br />1 ≤ A ≤ B ≤ 10100.<br /><br />Sample Input<br />------------<br /><br />3<br />1 4<br />10 120<br />100 1000<br /><br />Output<br />------<br /><br />Case #1: 2<br />Case #2: 0<br />Case #3: 2<br /></span><br /><br />The above problem statement says that given 2 numbers (min and max), we have to find the number of 'Fair and Square' numbers in that range (min --> max). For a number to be "Fair And Square", it should be a perfect square, a palindrome and it's square root should also be a palindrome. For Example: 4 is a palindrome and a perfect square. It's Square-Root 2 is also a palindrome. So, 4 is a "Fair And Square" number.<br /><br />My idea was to find the Minimum and Maximum 'Perfect Squares' in that range, find Square Roots for those numbers and loop between these 2 square-roots, to find the number of 'Fair and Square' numbers in the given range. When looping between these Square-roots, the square-root is first checked if it is a palindrome or not. If it is a palindrome, it's square is calculated and a check is done to find out, if it is a palindrome or not. If it is a palindrome, the square number is a 'Fair And Square' number.<br /><br />For the 'Small Input Dataset' of the above problem statement, the logic described above works without any problems and finishes pretty fast. But for large datasets, better algorithms or infrastructure is needed, for the programs to finish within the timeline. So, I decided on using external libraries to handle BIG numbers and also a Off-Heap-Memory framework/library, which persists Java's Map datastructure to disk (which would also help me to avoid Java's OutOfMemory problems). For handling big/large numbers, I decided to use the JScience library, which has "LargeInteger" and convenient methods to find "Square Roots" or do other math. For the Off-Heap-Memory (Disk based storage), there were a couple of options like Berkeley DB, HSQLDB, MapDB, etc...I decided on using MapDB, after I checked it's performance stats and found that to be good enough. Also, it was easy to get started. I used a Maven based project. So, the POM.xml for this project is as below:<br /><br /><b>NOTE</b>: If you are not using Maven, you can download these libraries seperately and use them for the below listed Java program.<br /><br /><script src="https://gist.github.com/bchetty/5467210.js"></script><br /><br />And the solution to the above problem statement is as below:<br /><br />Note that the below solution works for only the 'Small Data Set' and 'Large Dataset - 1', within the given timeline. For 'Large Dataset - 2', you can solve it by creating the 'Fair And Square' cache first, then download the input and solve it. A better solution would be to use a better algorithm, as described in the 'Contest Analysis' section of the GCJ 2013 Qualification Round's Dashboard.<br /><br /><script src="https://gist.github.com/bchetty/5467247.js"></script><br /><br />You can also find the source code at: <a href="https://gist.github.com/bchetty/5467247">GCJ 2013 - Fair And Square</a>

@@ -1,0 +1,44 @@
+---
+layout: post
+title: Recursion Depth - Java
+date: '2014-04-24T14:09:00.000-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+tags:
+- jvm
+- memory
+- prashanth
+- recursion
+- chetty
+- depth
+- babji
+- stack
+- inception
+- java
+modified_time: '2014-04-24T14:29:07.398-07:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-5687899443468803359
+blogger_orig_url: http://java-bytes.blogspot.com/2014/04/recursion-depth-java.html
+---
+
+Recently, in a programming competition, I made a big mistake by using recursion for solving one of the problems, as it resulted in 'StackOverflow' error and lost the chance to solve the problem for a larger input dataset. I realized it immediately and implemented a normal solution, but there wasn't much time to provide the solution.
+
+<br /><br />
+
+In Java, the JVM stores the method information (Variables, Return Address, etc) and its parameters in the Stack. So, when you use Recursion, they are constantly pushed to the stack memory, until the result of that method is returned. Usually, Stack has limited memory and is much less than the Heapsize.
+
+<br /><br />
+
+Below is a Java program, from which you can find the 'Recursion Depth' of the JVM that you are using:
+<br /><br />
+
+<script src="https://gist.github.com/bchetty/11268991.js"></script>
+
+The current 'Recursion Depth' for the JVM on my System is: 9372
+<br /><br />
+The 'Recursion Depth' depends on the present state of the Stack Memory usage, on your JVM. So, it might change, everytime you run it.
+<br /><br />
+References: 
+<br /><br />
+1) My own post on StackOverflow site: 
+<a href="http://stackoverflow.com/questions/9199984/basic-java-recursion-method/9200327#9200327">Basic Java Recursion Method</a>

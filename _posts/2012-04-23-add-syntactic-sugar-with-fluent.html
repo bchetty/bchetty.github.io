@@ -1,0 +1,138 @@
+---
+layout: post
+title: Add 'Syntactic Sugar' With 'Fluent Interface'
+date: '2012-04-23T11:51:00.000-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+tags:
+- jquery
+- syntactic sugar
+- op4j
+- fluent interface
+- return object
+- code readability
+- method chaining
+- return this
+- java
+modified_time: '2012-04-23T11:51:37.252-07:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-634071935553702301
+blogger_orig_url: http://java-bytes.blogspot.com/2012/04/add-syntactic-sugar-with-fluent.html
+---
+
+'<a href="http://en.wikipedia.org/wiki/Fluent_interface">Fluent Interface</a>' is a Object Oriented Programming technique for adding more '<a href="http://en.wikipedia.org/wiki/Syntactic_sugar">Syntactic Sugar</a>' to the language. This just makes the code more 'Readabale' and 'Expressible'...just shows the flow of logic, in a clear way. 
+<a href="http://martinfowler.com/bliki/FluentInterface.html">This term (Fluent Interface) was first coined by Eric Evans and Martin Fowler</a>. One way of achieving this, is to use '<a href="http://en.wikipedia.org/wiki/Method_chaining">Method Chaining</a>'. In Java or any other Object Oriented programming language, you can achieve this by returning the Object itself (using 'this' keyword), thus allowing the calls to be chained together, in a single statement.  
+
+<br/><br/>
+
+Below is a sample class (CustomList.class, which extends ArrayList): 
+
+<br/><br/> 
+
+{% highlight java %}
+import java.util.ArrayList;
+ 
+/**
+*
+* @author Babji, Chetty
+*/
+public class CustomList extends ArrayList {   
+    public CustomList addElem(Object e) {
+        super.add(e);
+        return this;
+    }
+}
+{% endhighlight %}
+
+<br/><br/>
+
+In the above class, you can see the custom 'addElem' method, which returns the Object itself (this), thus allowing it for 'Method Chaining'. Below is the 'Fluent Interface Demo' class: <br/><br/>
+
+{% highlight java %}
+import com.chetty.data.CustomList;
+import java.util.ArrayList;
+ 
+/**
+*
+* @author Babji, Chetty
+*/
+public class FluentInterfaceDemo {
+    public static void main(String[] args) {
+        ArrayList<String> arrList = new ArrayList<String>();
+        
+        arrList.add("string1");
+        arrList.add("string2");
+        arrList.add("string3");
+        arrList.add("string4");
+       
+        CustomList<String> custList = new CustomList<String>();
+        
+        custList.addElem("string1")
+                .addElem("string2")
+                .addElem("string3")
+                .addElem("string4");               
+    }   
+}
+{% endhighlight %}
+
+<br/><br/>
+
+In the above class, you can see the difference between how you add elements to 'arrList' (ArrayList) and 'custList' (CustonList). That's Syntactic Sugar for you! :) 
+
+<br/><br/>
+
+You can see this kind of implementation, in a couple of Java classes (Like StringBuffer, StringBuilder, BigDecimal, et al). Below is an example of Method Chaining, using Java's BigDecimal: 
+
+<br/><br/>
+
+{% highlight java %}
+BigDecimal bigD = BigDecimal.ONE.add(BigDecimal.TEN)
+                            .multiply(new BigDecimal("5"))
+                            .divide(BigDecimal.TEN);
+{% endhighlight %}
+
+<br/><br/>
+
+And below is an example of using Java's StringBuilder, which shows 'Method Chaining': 
+
+<br/><br/>
+
+{% highlight java %}
+StringBuilder sb = new StringBuilder();
+sb.append("1")
+  .append("2")
+  .append("3");
+{% endhighlight %}
+
+<br/><br/>
+
+If you look at the Source code for StringBuilder or BigDecimal, the methods used return an Object, thus allowing it to chain. This logic can be applied to any Object Oriented Programming language. If you are familiar with JQuery Javascript Framework, you should be able to figure it out that 'Method Chaining' is extensively used in JQuery. Below is an example: 
+
+<br/><br/>
+
+{% highlight xml %}
+<div id="divTest1"></div>
+<script type="text/javascript">
+    $("#divTest1").text("Hello, world!").css("color", "blue");
+</script>
+{% endhighlight %}
+
+<br/><br/>
+
+Reference: <a href="http://www.jquery-tutorial.net/introduction/method-chaining/">JQuery Method Chaining</a><
+
+br/><br/>
+
+There are also a couple of DSL's which are specially built, using this concept of 'Fluent Interface'. 
+<a href="http://www.op4j.org/">Op4j</a> is one interesting framework among 'em. Below is example code for Op4j: 
+
+<br/><br/>
+
+{% highlight java %}
+Set<Calendar> set = Op.on(list).toSet().forEach()
+                      .exec(FnString.toCalendar("dd/MM/yyyy")).get();
+{% endhighlight %}
+
+<br/><br/>
+
+Reference: <a href="http://www.op4j.org/">Op4j</a> (You can find more interesting examples in the referenced source).

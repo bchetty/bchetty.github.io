@@ -1,0 +1,26 @@
+---
+layout: post
+title: Dont Smack The Stack (Deal With Stack Overflow Exceptions)
+date: '2008-08-07T12:15:00.000-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+tags:
+- java programming
+- increase stack size
+- algorithms
+- java code
+- stack overflow exception
+- infinite resursion
+- prashanth
+- chetty
+- tail recursion
+- datastructures
+- babji
+- java
+modified_time: '2011-02-24T12:36:40.830-08:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-8269300466841415725
+blogger_orig_url: http://java-bytes.blogspot.com/2008/08/stack-overflow-exception.html
+---
+
+At times, Java programmers come across this scenario when they have to handle 'Stack Overflow' exception in Java. This probably and mostly happens due to some petty mistakes in the code. Stack overflow happens when all the memory that is allocated to the stack is totally used. Most of the programming languages have limited memory for the stack. So, when stack memory is totally used, it results in program crash.<br /><br />Stack overflow usually happens when a recursive function is used infinitely (which is probably due to some naive coding mistake). Alternatively, it can also happen when a very large stack variable is used. <br /><br />Some programming languages (specially functional programming languages like 'Scheme') use '<span style="font-weight:bold;">Tail Recursion</span>' to avoid 'Stack Overflow' errors and to improve efficiency. In this kind of technique, the last statement/operation in a method/function is a recursive call. By this use of logic, recursions can easily be transformed to iterations and thus help in effective use of memory/data-structures.<br /><br />Below are some scenario's in which this kind of java exception happens:<br /><br /><span style="font-weight:bold;">1) Infinite Recursion:</span><br /><br />If you have designed java applications with interfaces or abstract classes, sometimes you might bump into situations, where in, you have overridden a method from some interface/class that you are implementing and you mistakenly called the method of the interface/class, instead of calling some other method or implementing a totally new functionality. This code would not throw any compile time errors. But, at runtime, you would be surprised to see 'Stack Overflow' exceptions. Below is one trivial example:<br /><br /><pre class="brush:java">public interface Interface1 {<br />public void doSomeShit();<br />}<br /></pre><br /><br />Here's a class that implements 'Interface1', overrides the method and calls the same method. This is pretty stupid coding, but there might be scenario's where you might not notice because of code complexity or due to neglect.<br /><br /><pre class="brush:java">public class Interface1Impl implements Interface1<br />{<br />public static void main(String[] args) {<br />Interface1Impl i = new Interface1Impl();<br />i.doSomeShit();<br /><br />}<br /><br />public void doSomeShit() {<br />doSomeShit();<br />}<br />}<br /></pre><br /><br />The above program compiles fine, but throws 'Stack Overflow' exception, at runtime.<br /><br /><span style="font-weight:bold;">Example 2:</span><br /><br /><pre class="brush:java">public class StackOverflowDemo1<br />{<br />public static void main(String[] args) <br />{<br />StackOverflowDemo1 sofd = new StackOverflowDemo1();<br />sofd.method1();<br />}<br /><br />public void method1() {<br />method2();<br />}<br /><br />public void method2() {<br />method1();<br />}<br />}<br /><br /></pre><br /><br /><span style="font-weight:bold;">Example 3:</span><br /><br /><pre class="brush:java">public class StackOverflowDemo2<br />{<br />public static void main(String[] args) <br />{<br />StackOverflowDemo2 sofd = new StackOverflowDemo2();<br />sofd.valueOf(sofd);<br />}<br /><br />public String valueOf(Object obj) {<br />return valueOf(obj);    <br />}<br />}<br /><br /></pre><br /><br />The above code throws 'Stack Overflow' exception, as you are doing nothing special, but overriding the 'String' objects 'valueOf' method and calling it again. <br /><br />The JVM (Java Virtual Machine) uses stack to store the state of java method invocations (excluding Native methods). The state of a method is in its local variables, parameters, return value and whatever business/plain logic involved in that method. Java's programming model further splits 'Java Stack' into 'Stack frames' (which is probably a programming concept for efficiently handling the state of a method, et al things). Each and every method's state is associated with a particular stack frame. When the method completes, the stack frame is deallocated. This is how the methods parameters, local variables, return type variables are always thread safe.<br /><br />If you have problems with Java stack or if you want to increase the size of Java Stack, you can use the following command:<br /><br /><span style="font-weight:bold;">Java - Xss Stack-Size</span><br /><br />Replace the 'Stack-Size', with the size of memory that you need.<br /><br />Thats it! Happy coding and 'Protect The Stack'! ;-) (Now, the heap's calling..huh)

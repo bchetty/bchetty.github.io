@@ -1,0 +1,151 @@
+---
+layout: container-template
+comments: true 
+---
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default shadow1">
+            <div class="panel-heading">
+                <h3><u>{{ page.title }}</u></h3>
+                <span class="text-muted"><small>Posted on {{ page.date | date: "%B %-d, %Y" }}</small></span>
+            </div>
+            <div class="panel-body">
+                <div style="display:inline-block;vertical-align:top">
+                    <a href="https://twitter.com/intent/tweet" class="twitter-share-button" data-via="chettyb" data-related="chettyb" data-count="none">Tweet</a>
+                </div>
+                <div style="display:inline-block;vertical-align:top">
+                    <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a>
+                </div>
+                <div class="fb-like" data-href="http://www.your-domain.com/your-page.html" data-layout="standard" data-action="like" data-show-faces="true">
+                </div>
+                <div style="display:inline-block;vertical-align:top">
+                    <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false">
+                        <img src="//www.redditstatic.com/spreddit7.gif" alt="submit to reddit" border="0" />
+                    </a>
+                </div>
+                <div style="display:inline-block;vertical-align:top">
+                    <a href="https://news.ycombinator.com/submit" class="hn-button">Vote on Hacker News</a>
+                </div>
+                <br/><br/>
+                {{ content }}
+                <br/><br/>
+                <div style="display:inline-block;vertical-align:top">
+                    <a href="https://twitter.com/intent/tweet" class="twitter-share-button" data-via="chettyb" data-related="chettyb" data-count="none">Tweet</a>
+                </div>
+                <div style="display:inline-block;vertical-align:top">
+                    <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a>
+                </div>
+                <div class="fb-like" data-href="http://www.your-domain.com/your-page.html" data-layout="standard" data-action="like" data-show-faces="true">
+                </div>
+                <div style="display:inline-block;vertical-align:top">
+                    <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false">
+                        <img src="//www.redditstatic.com/spreddit7.gif" alt="submit to reddit" border="0" />
+                    </a>
+                </div>
+                <div style="display:inline-block;vertical-align:top">
+                    <a href="https://news.ycombinator.com/submit" class="hn-button">Vote on Hacker News</a>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <ul class="pager blog-pager">
+                    {% if page.previous.url %}
+                    <li class="previous">
+                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top"
+                        title="{{page.previous.title}}">&larr; Previous Post</a>
+                    </li>
+                    {% endif %} {% if page.next.url %}
+                    <li class="next">
+                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+        {% if page.comments %}
+        <div class="panel panel-default shadow1">
+            <div class="panel-body">
+                {% include disqus.html %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="text-primary"><b>Recent Posts</b></span>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    {% for post in site.posts offset: 0 limit: 5  %}
+                        <li>
+                            <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="text-primary"><b>Blog Categories</b></span>
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+                    {% for category in site.categories %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" name="{{ category | first }}" 
+                                   href="#{{ category | first }}">
+                                    {{ category | first }}
+                                </a>
+                            </h4>
+                        </div>
+                        
+                        {% if forloop.index == 1 %}
+                        <div id="{{ category | first }}" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <ul>
+                                    {% for posts in category %} {% for post in posts %}
+                                    <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+                                    {% endfor %} {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div id="{{ category | first }}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul>
+                                    {% for posts in category %} {% for post in posts %}
+                                    <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+                                    {% endfor %} {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        {% endif %}                       
+                        
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="text-primary"><b>Disclaimer</b></span>
+            </div>
+            <div class="panel-body">
+                The views expressed on this blog are my personal views and do not reflect the views of 
+                my employer or campaigns I am supporting.
+                <br/><br/>
+                All sample code is provided for illustrative purposes only. These examples have not been thoroughly tested under all conditions. The writer therefore, cannot guarantee or imply reliability, serviceability, or function of these programs.
+                <br/><br/>
+                All programs contained herein are provided to you "AS IS" without any warranties of any kind. The implied warranties of non-infringement, merchantability and fitness for a particular purpose are expressly disclaimed.
+            </div>
+        </div>
+    </div>
+</div>

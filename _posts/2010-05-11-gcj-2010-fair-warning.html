@@ -1,0 +1,22 @@
+---
+layout: post
+title: GCJ 2010 - Fair Warning
+date: '2010-05-11T01:52:00.009+02:00'
+author: Babji Prashanth, Chetty
+categories:
+- algos
+- programming
+tags:
+- babji chetty
+- fair warning problem
+- gcj 2010
+- google code jam 2010
+- babji prashanth
+- greatest common divisor
+- prashanth chetty
+modified_time: '2013-06-03T18:48:37.036+02:00'
+blogger_id: tag:blogger.com,1999:blog-8063665696479699369.post-5526473627482371371
+blogger_orig_url: http://google-tale.blogspot.com/2010/05/gcj-2010-fair-warning.html
+---
+
+Below is the description of a problem called 'Fair Warning', from 'Google Code Jam - 2010':<br /><blockquote><font color="green"><br />Problem<br />-------<br /><br />On our planet, Jamcode IX, three Great Events occurred. They happened 26000, 11000 and 6000 slarboseconds ago. In 4000 slarboseconds, the amount of time since all of those events will be multiples of 5000 slarboseconds, the largest possible amount... and the apocalypse will come.<br /><br />Luckily for you, you live on Jamcode X! The apocalypse came on Jamcode IX less than a year ago. But Jamcode X has a worrying prophecy: "After the moment of reckoning, on the first optimum anniversary of the N Great Events, the apocalypse will come. 64 bits will not save you. You have been warned."<br /><br />The people of Jamcode X are very concerned by this prophecy. All of the Great Events have already happened, and their times have been measured to the nearest slarbosecond; but nobody knows when their optimum anniversary will occur. After studying the diary of a scientist from Jamcode IX, scientists working on the problem have come up with a theory:<br /><br />The moment of reckoning is now, the moment you solve this problem. At some time y ≥ 0 slarboseconds from now, the number of slarboseconds since each of the Great Events will be divisible by some maximum number T. If you can find the smallest value of y that gives this largest possible T, that will give you the optimum anniversary when the apocalypse will come.<br /><br />On Jamcode IX, for example, there were 3 Great Events and they happened 26000, 11000 and 6000 slarboseconds before the moment of reckoning. 4000 slarboseconds later, the amount of time since each event was a multiple of T=5000 slarboseconds, and the apocalypse came.<br /><br />Your job is to compute the amount of time until the apocalypse comes. But remember the prophecy: even though the people of Jamcode X have been solving problems for two years, and 64-bit integers have always been enough, they might not always be enough now or in the future.<br /><br />Input<br />-----<br /><br />The first line of the input gives the number of test cases, C. C lines follow. Each starts with a single integer N, which is followed by a space and then N space-separated integers ti, the number of slarboseconds since Great Event i occurred.<br /><br />Output<br />------<br /><br />For each test case, output one line containing "Case #x: y", where x is the case number (starting from 1) and y is the minimum number of slarboseconds until ti + y is a multiple of the largest possible integer factor T for all i.<br /><br />Limits<br />------<br /><br />1 ≤ C ≤ 100.<br />ti ≠ tj for some i, j.<br /><br />Small dataset<br />-------------<br /><br />2 ≤ N ≤ 3.<br />1 ≤ ti ≤ 108.<br /><br />Large dataset<br />-------------<br /><br />2 ≤ N ≤ 1000.<br />1 ≤ ti ≤ 1050.<br /><br />Sample Input <br />------------ <br />3<br />3 26000000 11000000 6000000<br />3 1 10 11<br />2 800000000000000000001 900000000000000000001<br /><br />Output <br />------ <br /><br />Case #1: 4000000<br />Case #2: 0<br />Case #3: 99999999999999999999<br /></font><br /></blockquote><br />Below is my java solution:<br /><br /><script src="https://gist.github.com/bchetty/5639815.js"></script>

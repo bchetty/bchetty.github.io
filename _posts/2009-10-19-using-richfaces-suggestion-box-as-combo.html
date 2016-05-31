@@ -1,0 +1,69 @@
+---
+layout: post
+title: Using Richfaces 'Suggestion Box' As Combo Box
+date: '2009-10-19T11:14:00.000-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+- web
+tags:
+- chetty prashanth
+- chetty babji
+- richfaces combobox shows ids
+- Using Richfaces 'Suggestion Box' As Combo Box or drop down list
+- richfaces ajax framework
+modified_time: '2011-03-22T16:45:28.731-07:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-2378397718248021276
+blogger_orig_url: http://java-bytes.blogspot.com/2009/10/using-richfaces-suggestion-box-as-combo.html
+---
+
+If you had already tried to use Richfaces Combo Box for populating the 'id-value' pairs, you would have noticed that the dropdown/combo box will be populated with id's, rather than values. It's not a bug or a problem with richfaces framework, but a different design. There's a workaround for this, which lets you use the 'Richfaces Suggestion Box' component, to work like a combo box or a dropdown list.<br /><br />Below is the sample code snippet from a facelets file, which acts like a combo box:
+
+<br /><br />
+
+{% highlight xml %}
+<a4j:form id="form1">
+    ...............
+
+    ...............
+
+    <h:outputText value="Key :"/>
+    <a4j:region selfRendered="true" id="region1">
+        <h:inputText id="value" value="Value : "/>
+        <h:graphicImage value="arrow.png" alt=""
+            onclick="openSuggestionBox('suggestion',
+                        'form1','value','');"/>
+
+        <rich:suggestionbox id="suggestion" for="value" var="result"
+                suggestionAction="#{someBean.fill}" 
+                ignoreDupResponses="true">
+            <h:column>
+                <h:outputText value="#{result.description}"/>
+            </h:column>
+
+            <a4j:support event="onselect">
+                <f:setPropertyActionListener value="#{result.id}" 
+                    target="#{someBean.selId}"/>
+            </a4j:support>
+        </rich:suggestionbox>
+    </a4j:region>
+</a4j:form>
+{% endhighlight %}
+
+<br />
+
+In the above code, I'm using a arrow image (down arrow) beside the input text box, to make it look like a combo-box/drop-down list and created a javascript function, which is called on click of that arrow image. This javascript function does nothing special, but clears the text-box and calls the actual 'Suggestion Box' method (creates an AJAX request).
+
+<br /><br />
+
+And below is the Javascript code for 'openSuggestion' function:<br /><br />
+
+{% highlight javascript %}
+<script type="text/javascript">
+    function openSuggestionBox(suggestionBoxId,formId, textBoxId) {
+        document.getElementById(formId + ':' + textBoxId).value='';
+        v=$(formId + ':' + 
+            suggestionBoxId).component.callSuggestion(true); 
+    }
+</script>
+{% endhighlight %}

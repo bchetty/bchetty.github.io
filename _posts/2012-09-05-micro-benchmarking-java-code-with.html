@@ -1,0 +1,103 @@
+---
+layout: post
+title: Micro-benchmarking Java Code With Caliper
+date: '2012-09-04T15:42:00.000-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+tags:
+- micro
+- benchmark
+- caliper
+- code
+- google
+- microbenchmark
+- benchmarking java code
+- java
+modified_time: '2013-05-24T14:34:20.657-07:00'
+thumbnail: http://3.bp.blogspot.com/-_C9_J6MbT10/UEaBIkrsQBI/AAAAAAAAjFM/EI93wcPCaoY/s72-c/caliper1.jpg
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-2453071558516339545
+blogger_orig_url: http://java-bytes.blogspot.com/2012/09/micro-benchmarking-java-code-with.html
+---
+
+Benchmarking Java code can be tricky, as the Java's JIT compiler optimizes the code for high-speed execution. But there are cases where you can test Java code for performance statistics. <a href="http://code.google.com/p/caliper/" target="_blank">Caliper</a> is one such tool, which can be used to benchmark java code. More precisely, it is a Micro-Benchmarking tool, used only for testing the performance of small units of Java code.
+
+<br /><br />
+
+To test how Caliper works, I worked on a sample Maven based project. The code that I wanted to test is to check if a Java's HashMap contains a key and get it, if the key exists. The usual way of doing this is:  
+
+<br /><br />
+
+{% highlight java %}
+if(someMap.containsKey(key)) {
+    someValue = someMap.get(key);
+}
+{% endhighlight %}
+
+But, the below code performs better:  
+
+<br /><br />
+
+{% highlight java %}
+someValue = someMap.get(key);
+if(someValue != null) {}
+{% endhighlight %}
+
+Although 'containsKey' operation is the same as 'get', the above code performs better, as containsKey operation does some additional work. To micro-benchmark this code, I've worked on a simple project and the sources are listed below:  Below is the pom.xml dependency for Caliper:
+
+<br /><br />
+
+{% highlight xml %}
+<dependency>
+    <groupId>com.google.caliper</groupId>
+    <artifactId>caliper</artifactId>
+    <version>0.5-rc1</version>
+</dependency>
+{% endhighlight %}
+
+<br />
+
+And below is the code for the Caliper Demo class file: <br /><br />
+
+<script src="https://gist.github.com/bchetty/5646657.js"></script>
+
+Below are the results for the above test (displaying both 'linear' and 'logarithmic' run-times):  <br /><br />
+
+<div class="separator" style="clear: both; text-align: center;">
+    <a href="{{ site.baseurl }}/img/caliper1.jpg" imageanchor="1" style="margin-left:1em; margin-right:1em">
+        <img border="0" height="258" width="320" src="{{ site.baseurl }}/img/caliper1.jpg" />
+    </a>
+</div>
+
+<br /><br />
+
+<div class="separator" style="clear: both; text-align: center;">
+    <a href="{{ site.baseurl }}/img/caliper2.jpg" imageanchor="1" style="margin-left:1em; margin-right:1em">
+        <img border="0" height="258" width="320" src="{{ site.baseurl }}/img/caliper2.jpg" />
+    </a>
+</div>
+
+<br /><br />
+
+After running the above test, I ran the same code with different length's, by changing the @Param values to 
+"@Param({"50", "100", "1000", "10000"})" and the results are as below (displaying both 'linear' and 'logarithmic' times): 
+
+<br /><br />
+
+<div class="separator" style="clear: both; text-align: center;">
+    <a href="{{ site.baseurl }}/img/caliper3.jpg" imageanchor="1" style="margin-left:1em; margin-right:1em">
+        <img border="0" height="258" width="320" src="{{ site.baseurl }}/img/caliper3.jpg" />
+    </a>
+</div>
+
+<br /><br />
+
+<div class="separator" style="clear: both; text-align: center;">
+    <a href="{{ site.baseurl }}/img/caliper4.jpg" imageanchor="1" style="margin-left:1em; margin-right:1em">
+        <img border="0" height="258" width="320" src="{{ site.baseurl }}/img/caliper4.jpg" />
+    </a>
+</div>
+
+<br /><br />
+
+<b>PS</b>: Premature Optimization can still be the root of all evils. :P

@@ -1,0 +1,39 @@
+---
+layout: post
+title: Missing Number
+date: '2012-02-13T16:08:00.000-08:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+- puzzles
+tags:
+- programming puzzles
+- missing number
+- software
+- Amazon interview question
+- bitset
+- array of numbers
+- sum
+modified_time: '2013-06-03T09:54:58.626-07:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-2922553378924367866
+blogger_orig_url: http://java-bytes.blogspot.com/2012/02/missing-number.html
+---
+
+Apart from a few programming puzzles, I never really got to work extensively on 'Bit Array' operations. 
+So, as  was practicing a bit, I got an idea for a problem, for which I posted a solution already (
+<a href="http://java-bytes.blogspot.com/2010/06/software-job-interview-question.html">Software Job - Interview Question</a>). 
+This problem is about finding the missing number, in a array of unsorted numbers. 
+<br/><br/>
+For Ex: <b>We have numbers from 1 to 52 that are put into a 51 number array, what's the best way to find out which number is missing?</b> 
+
+<br/><br/>As per the idea in that earlier post, the code would look like:  
+
+<br /><br />
+
+<script src="https://gist.github.com/bchetty/5646391.js"></script><br />
+
+An other solution is to use Java's BitSet, as in the below listed code. Also, note that the following logic is also good for finding multiple missing numbers. So, the below code is a better approach to find one or more than one missing numbers:  
+
+<br /><br />
+
+<script src="https://gist.github.com/bchetty/5646399.js"></script>

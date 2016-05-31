@@ -1,0 +1,19 @@
+---
+layout: post
+title: Spiral Walking
+date: '2008-07-04T13:04:00.000-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- algos
+- programming
+tags:
+- walk spirally in a rectangular grid
+- algorithms
+- java spiral walking
+- algorithm hacks
+modified_time: '2013-06-03T09:56:04.430-07:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-978100147577435473
+blogger_orig_url: http://java-bytes.blogspot.com/2008/07/spiral-walking.html
+---
+
+Problem: Spiral Walking<br /><br />Description: The problem is to traverse a rectangular grid of cells, starting from the top first cell on the left. Initially, you start in the "right" direction and move through the grid, cell by cell. Each and every cell must be visited only once. If you end up in a cell, which is the last in that direction (or already visited), change direction and move forward. This should be done til you cover all the cells in that rectangular grid.<br /><br />Example: (for a 4*3 grid)<br /><br />- - &gt;<br />^ &gt; |<br />| v |<br />&lt; - v       <br /><br />Java Solution:  In this solution, I'm using direction flags and a boolean matrix (to identify if a cell has been already visited or not) and returning a string[][] array of the resulting spiral path. I've not optimised the code for clarity and other reasons. Please feel free to comment/suggest with any other ideas or positive criticism. The Java implementation is as below:<br /><br /><script src="https://gist.github.com/bchetty/5646622.js"></script><br /><br />Since each and every cell has to be visited, this algo might be slow for large input values. But for this Java implementation, I've used 'int' for 'row' and 'col'. So, you cant specify large input values anyways, although it still matters.<br /><br />The code above outputs the following string[][] array, when provided with an input of 10 rows and 10 columns:<br /><br />- - - - - - - - - &gt;<br />^ - - - - - - - &gt; |<br />| ^ - - - - - &gt; | |<br />| | ^ - - - &gt; | | |<br />| | | ^ - &gt; | | | |<br />| | | | &lt; v | | | |<br />| | | &lt; - - v | | |<br />| | &lt; - - - - v | |<br />| &lt; - - - - - - v |<br />&lt; - - - - - - - - v

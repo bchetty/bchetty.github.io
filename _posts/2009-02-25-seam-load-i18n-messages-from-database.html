@@ -1,0 +1,21 @@
+---
+layout: post
+title: Seam - Load i18n Messages From Database
+date: '2009-02-25T13:51:00.000-08:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+tags:
+- babji chetty
+- getKeys
+- handleGetObject
+- override Seam ResourceLoader
+- override ResourceBundle
+- JBoss seam
+- Load i18n Messages From Database
+modified_time: '2013-06-03T09:55:35.929-07:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-2400236416276174440
+blogger_orig_url: http://java-bytes.blogspot.com/2009/02/seam-load-i18n-messages-from-database.html
+---
+
+In some of the JavaEE web applications, it might be a requirement for you, to load internationalization (i18n) messages from database, instead of the usual way of using 'Resource Bundles'. Seam is a pretty good and extensible framework. It provides you an option to override the built-in 'ResourceLoader' functionality and provide your custom logic. Below is the code for the Java class, which extends the Seam's 'ResourceLoader' component and loads i18n messages from the database:<br /><br /><script src="https://gist.github.com/bchetty/5646460.js"></script><br /><br />This component is instantiated, only if the user is authenticated, as the annotations show that it depends on the 'Identity' component. Apart from this, in the overridden methods, I'm getting the 'User' component (which holds the logged-in user details, from database) and loading messages from database (for whatever his/her settings are).

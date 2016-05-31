@@ -1,0 +1,32 @@
+---
+layout: post
+title: Creating Executable Jar File With Maven Shade Plugin
+date: '2011-09-30T18:02:00.000-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+tags:
+- prashanth
+- chetty
+- create executable jar file
+- maven shade plugin
+- pom.xml
+- babji
+- java
+modified_time: '2013-05-24T13:36:33.073-07:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-2391880694490054786
+blogger_orig_url: http://java-bytes.blogspot.com/2011/09/creating-executable-jar-file-with-maven.html
+---
+
+In a couple of Java projects with external jar files as dependencies, you can create an executable jar file by the following ways: 
+
+<br /><br />
+
+1) Include the sources of external libraries in your project and build them, as part of your project build process.<br /><br />
+2) Unpack the jar file, pack them inside your project and create a single executable jar file. 
+
+<br /><br />
+
+For maven users, fortunately, there is "Maven Shade Plugin", which does the work for you, probably using the second option, as described above. Even if there wasn't a plugin, I guess, it ain't that difficult to build one. To use that plugin, all you have to do is to include the following <plugin> tag in your project's pom.xml:<br /><br /><br />
+
+<script src="https://gist.github.com/bchetty/5646343.js"></script>

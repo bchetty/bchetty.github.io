@@ -1,0 +1,50 @@
+---
+layout: post
+title: Priority Queue in Java
+date: '2012-04-03T13:38:00.000-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+tags:
+- job scheduling
+- algorithms
+- priority queue
+- data structures
+- java
+modified_time: '2012-04-06T15:40:11.111-07:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-4735952505976754586
+blogger_orig_url: http://java-bytes.blogspot.com/2012/04/priority-queue-in-java.html
+---
+
+'Priority Queue' is a data structure similar to Queue, but pulls/pops out the first element with top priority first (FPIFO, for convenience), whereas Queue is just 'First In First Out' (FIFO). 
+<a href="http://en.wikipedia.org/wiki/Priority_queue#Applications">This data structure can be used in a variety of applications like Scheduling, Bandwidth Management, Discrete Event Simulation, etc.</a><br/><br/>I was just coding for fun and for brushing up my skills on algorithms and coded a few examples, as listed below. As shown in the examples, I used the Java's PriorityQueue implementation in the util package. <br/><br/>In the below example, the priority queue is fed with Integer numbers and the priority is determined by checking if the number is a least prime or not. 
+
+<br/><br/>
+
+<script src="https://gist.github.com/bchetty/95b3dfde692090392d22.js"></script>
+
+<br/>The output for the above example is: 
+
+<blockquote>2 <-- 3 <-- 5 <-- 7 <-- 1 <-- 4 <-- 6 <-- 8 <-- 9 <-- 10 <--</blockquote>
+
+As you see, prime numbers appear before other numbers. <br/><br/>
+
+The below example is more of a real world example, where the order of patients to be treated by a doctor can be determined by checking if it's a emergency case or not. 
+
+<br/><br/>
+
+Below is the code for 'Patient' class: 
+
+<br/>
+
+<script src="https://gist.github.com/bchetty/df005d55cd489e5923e9.js"></script>
+
+<br/>
+
+And below is the code for testing Patient priority queue: <br/><br/> 
+
+<script src="https://gist.github.com/bchetty/1ae4217e90760f2af9fc.js"></script><br/>
+
+The output for the above example is: <blockquote>Doctor's waiting for patients  : Patient3 <-- Patient5 <-- Patient1 <-- Patient2 <-- Patient4 <-- </blockquote>
+
+As you see, patients who need to be treated immediately (emergency cases) appear before other patients.

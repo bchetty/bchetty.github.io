@@ -1,0 +1,148 @@
+
+/* Custom CSS styles 
+----------------------------------------------- */
+html {
+  min-height:100%;
+  position: relative;
+}
+body {
+  min-height:100%;
+  
+  /* For Fixed Nav Bar */
+  padding-top: 70px;
+  /* Margin bottom by footer height */
+  margin-bottom: 150px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 150px;
+  background-color: #f5f5f5;  
+}
+.footerBox {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.archiveContainer li {
+  display: block;
+  padding: 5px;
+}
+.archiveContainer li:before {
+    content: "\e080";
+    font-family: 'Glyphicons Halflings';
+    font-size: 12px;
+    float: left;
+    margin-top: 4px;
+    margin-left: -17px;
+    color: #337ab7;
+}
+.container-table {
+    display: table;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+body {
+ font-family: GillSans, Calibri, Trebuchet, sans-serif;
+ font-size: 16px;
+}
+h1,h2,h3,h4,h5 { 
+  font-family: 'Indie Flower', cursive;
+  font-weight: 800;
+}
+a {
+  color: #008AFF;
+  font-family: 'Indie Flower', cursive;  
+}
+a:hover,
+a:focus {
+  color: #0085a1;
+}
+
+.navbar-default {
+  background: url(/assets/img/bg.png);
+}
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+.navbar-default .navbar-brand {
+  color: white;
+}
+.navbar-default .navbar-toggle {
+  border-color: #f5f5f5;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #f5f5f5;
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+  background-color: #97CCE6;
+}
+.postPreviewBox {
+  -webkit-box-shadow: 0 4px 6px -6px #222;
+  -moz-box-shadow: 0 4px 6px -6px #222;
+  box-shadow: 0 4px 6px -6px #222;
+  
+  padding: 10px;
+}
+.readMoreLink {
+  font-size: 16px;  
+}
+.postMeta {
+  
+}
+.postPreviewContent {
+  
+}
+.profileIcons {
+  
+}
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+  body {
+    font-size: 20px;
+  }
+  .avatar {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+  body {
+    font-size: 18px;
+  }
+  .avatar {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+  .avatar {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {  
+  .avatar {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+  .avatar {
+    height: 50px;
+    width: 50px;
+  }
+}

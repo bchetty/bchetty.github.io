@@ -1,0 +1,21 @@
+---
+layout: post
+title: GCJ 2010 - Snapper Chain
+date: '2010-05-09T18:28:00.003+02:00'
+author: Babji Prashanth, Chetty
+categories:
+- algos
+- programming
+tags:
+- babji chetty
+- gcj 2010
+- google code jam 2010
+- babji prashanth
+- snapper chain problem
+- prashanth chetty
+modified_time: '2013-06-03T18:48:58.114+02:00'
+blogger_id: tag:blogger.com,1999:blog-8063665696479699369.post-5514193050350423615
+blogger_orig_url: http://google-tale.blogspot.com/2010/05/gcj-2010-snapper-chain.html
+---
+
+Below is the description of a problem called 'Snapper Chain', from the 'Google Code Jam - 2010':<br /><font color="green"><br /><blockquote>Problem<br />-------<br /><br />The Snapper is a clever little device that, on one side, plugs its input plug into an output socket, and, on the other side, exposes an output socket for plugging in a light or other device.<br /><br />When a Snapper is in the ON state and is receiving power from its input plug, then the device connected to its output socket is receiving power as well. When you snap your fingers -- making a clicking sound -- any Snapper receiving power at the time of the snap toggles between the ON and OFF states.<br /><br />In hopes of destroying the universe by means of a singularity, I have purchased N Snapper devices and chained them together by plugging the first one into a power socket, the second one into the first one, and so on. The light is plugged into the Nth Snapper.<br /><br />Initially, all the Snappers are in the OFF state, so only the first one is receiving power from the socket, and the light is off. I snap my fingers once, which toggles the first Snapper into the ON state and gives power to the second one. I snap my fingers again, which toggles both Snappers and then promptly cuts power off from the second one, leaving it in the ON state, but with no power. I snap my fingers the third time, which toggles the first Snapper again and gives power to the second one. Now both Snappers are in the ON state, and if my light is plugged into the second Snapper it will be on.<br /><br />I keep doing this for hours. Will the light be on or off after I have snapped my fingers K times? The light is on if and only if it's receiving power from the Snapper it's plugged into.<br /><br />Input<br />-----<br /><br />The first line of the input gives the number of test cases, T. T lines follow. Each one contains two integers, N and K.<br /><br />Output<br />------<br /><br />For each test case, output one line containing "Case #x: y", where x is the case number (starting from 1) and y is either "ON" or "OFF", indicating the state of the light bulb.<br /><br />Limits<br />------<br /><br />1 ≤ T ≤ 10,000.<br /><br />Small dataset<br />-------------<br /><br />1 ≤ N ≤ 10;<br />0 ≤ K ≤ 100;<br /><br />Large dataset<br />-------------<br /><br />1 ≤ N ≤ 30;<br />0 ≤ K ≤ 108;<br /><br />Sample Input <br />------------ <br />4<br />1 0<br />1 1<br />4 0<br />4 47<br /><br />Sample Output <br />-------------<br />Case #1: OFF<br />Case #2: ON<br />Case #3: OFF<br />Case #4: ON<br /></blockquote></font><br /><br />The description of the problem might be a bit confusing, but if you spend some time and clearly understand about what it really wants, then its really easy to code the solution for that. In my case, I wrote it down on paper and looked at the pattern of the snappers, for different values of n (number of snapper devices)....After looking at the different patterns, it was easy for me to figure out that the number of minimum snaps required to power the end device is equal to "(2 power n) - 1". Ok, this is just the minimum number of snaps! After the minimum number of snaps, it takes 1 snap to totally power off all the snappers...and it again takes "minimum number of snaps', to power the end device. So, after the 'minimum number of snaps', it takes (2 power n) to power the end device. Below is the solution, that I coded in Java:<br /><br /><script src="https://gist.github.com/bchetty/5639629.js"></script><br /><br />The solution for this problem can be coded in different ways...In the 'Content Analysis' section of Code Jam site, there is another interesting solution of using XOR operation of bits.

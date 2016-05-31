@@ -1,0 +1,22 @@
+---
+layout: post
+title: Javascript/CSS Minification With YUI Compressor
+date: '2012-04-24T14:24:00.001-07:00'
+author: Babji Prashanth, Chetty
+categories:
+- js
+tags:
+- css
+- minification
+- improve performance of web application
+- YUI compressor maven plugin
+- javascript
+- reduce bandwidth
+- compress javascript or css files
+- reduce data transfer
+modified_time: '2013-06-03T09:53:58.605-07:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-7465823230218972999
+blogger_orig_url: http://java-bytes.blogspot.com/2012/04/javascriptcss-minification-with-yui.html
+---
+
+'<b>Minification</b>' is a process of compressing the source code, without changing it's functionality. This technique is useful sometimes, specially in the case of a web application with huge Javascript/CSS files. In other cases, it's probably just a micro-optimization. Minifying js/CSS files will reduce the bandwidth used and also improves the performance of the application. As per <a href="http://en.wikipedia.org/wiki/Minification_(programming)">Wikipedia Source</a>: <br /><blockquote>Minified source code is especially useful for interpreted languages deployed and transmitted on the Internet (such as JavaScript), because it reduces the amount of data that needs to be transferred. Minified source code may also be used as a kind of obfuscation. In Perl culture, aiming at extremely minified source code is the purpose of the Perl golf game. <br /><br />Minified source code is also very useful for HTML code. As an example, successive whitespace characters in HTML are rendered as a single space, so replacing all whitespace sequences with single spaces can considerably reduce the size of a page.</blockquote><br />There are a couple of tools available to minify js/CSS code, like Google's Closure-Compiler, Yahoo's YUI Compressor, JSMin, etc. If you are using Maven for your build process, you can use the <a href="http://alchim.sourceforge.net/yuicompressor-maven-plugin/">Maven plugin for YUI Compressor</a>, as below: <br /><br /><script src="https://gist.github.com/bchetty/5646367.js"></script><br /><br />And the plugin repository, is as below:<br /><br /><script src="https://gist.github.com/bchetty/5646374.js"></script><br /><br />I created a sample web application with "js" folder to store javascript files and used the above configuration to test the 'Minification' process. I downloaded the latest version of JQuery (both files - 'Minified' and 'Uncompressed' 1.7.2 version files) and copied it to my "js" folder and built the web application using Maven.   The downloaded JQuery files weighed as noted below: <br /><blockquote><b>JQuery-1.7.2.js --> 253 KB <br />JQuery-1.7.2.min.js --> 95 KB</b></blockquote><br />After the Maven Build, the JQuery-1.7.2.js is minified and the minified js file weighed as noted below: <br /><blockquote><b>JQuery-1.7.2-min.js  --> 108 KB</b></blockquote><br />The above results show that the 'Minification' process is working pretty fine. So, if you are using a lot of javascript/css files in your web application, consider minifying your js/css code, so that you can reduce the data transferred and also improve the performance of your web application. In some cases, it might be a micro-optimization. So, let me also remind you that '<a href="http://en.wikiquote.org/wiki/Donald_Knuth#Computer_Programming_as_an_Art_.281974.29">Premature Optimization is the root of all evil</a>'.

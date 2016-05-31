@@ -1,0 +1,67 @@
+---
+layout: post
+title: Autoboxing In Java & Bug Patterns
+date: '2009-02-04T12:47:00.000-08:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+tags:
+- babji chetty
+- java autoboxing
+- babji prashanth
+- prashanth chetty b
+- nullpointerexception
+- autoboxing
+modified_time: '2010-02-04T13:04:05.955-08:00'
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-696326797251081527
+blogger_orig_url: http://java-bytes.blogspot.com/2009/02/autoboxing-in-java-bug-patterns.html
+---
+
+Consider the following example:
+
+<br /><br />
+
+1) Some Java Bean:
+<br /><br />
+{% highlight java %}
+public class SomeBean implements Serializable {
+   private int someInt;
+
+   public int getSomeInt() {
+      return this.someInt;
+   }
+
+   public void setSomeInt(int someInt) {
+      this.someInt = someInt;       
+   }
+}
+{% endhighlight %}
+
+<br />
+
+2) And somewhere in some class (with business logic), you have this:
+
+<br /> <br />
+
+{% highlight java %}
+HashMap<String, Integer> someMap = new HashMap<String, Integer>();
+{% endhighlight %}
+
+<br />
+
+...and somewhere down the line, you find a code statement like this:<br /> <br />
+
+{% highlight java %}
+someBean.setSomeInt(someMap.get("someString"));
+{% endhighlight %}
+
+<br /> <br />
+
+The above code statement works fine, when there are no 'null' values. But if there is a null value for some key, it fails.....because 'AutoBoxing' throws a NullPointerException when the above code statement tries to unbox a 'null' value.<br /><br />So, the immediate solution for that would be something like:
+<br /><br />
+
+{% highlight java %}
+Integer someInt = someMap.get("someString");
+
+someBeam.setSomeInt((someInt != null) ? someInt : 0);
+{% endhighlight %}

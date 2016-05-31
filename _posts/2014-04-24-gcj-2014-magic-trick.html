@@ -1,0 +1,24 @@
+---
+layout: post
+title: GCJ 2014 - Magic Trick
+date: '2014-04-24T13:18:00.002+02:00'
+author: Babji Prashanth, Chetty
+categories:
+- algos
+- programming
+tags:
+- Babji
+- gcj 2014
+- Java
+- cards
+- google code jam 2014
+- chetty
+- Prashanth
+- magic trick problem
+- magictrick
+modified_time: '2014-04-24T13:37:02.732+02:00'
+blogger_id: tag:blogger.com,1999:blog-8063665696479699369.post-1526940611693115739
+blogger_orig_url: http://google-tale.blogspot.com/2014/04/gcj-2014-magic-trick.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><br />Below is the problem statement for 'Magic Trick' problem from the Google Code Jam - 2014:<br /><br /><b><u>Problem A. Magic Trick</u></b><br /><br /><blockquote>Recently you went to a magic show. You were very impressed by one of the tricks, so you decided to try to figure out the secret behind it!<br /><br />The magician starts by arranging 16 cards in a square grid: 4 rows of cards, with 4 cards in each row. Each card has a different number from 1 to 16 written on the side that is showing. Next, the magician asks a volunteer to choose a card, and to tell him which row that card is in.<br /><br />Finally, the magician arranges the 16 cards in a square grid again, possibly in a different order. Once again, he asks the volunteer which row her card is in. With only the answers to these two questions, the magician then correctly determines which card the volunteer chose. Amazing, right?<br /><br />You decide to write a program to help you understand the magician's technique. The program will be given the two arrangements of the cards, and the volunteer's answers to the two questions: the row number of the selected card in the first arrangement, and the row number of the selected card in the second arrangement. The rows are numbered 1 to 4 from top to bottom.<br /><br />Your program should determine which card the volunteer chose; or if there is more than one card the volunteer might have chosen (the magician did a bad job); or if there's no card consistent with the volunteer's answers (the volunteer cheated).<br /><br />Solving this problem<br /><br />Usually, Google Code Jam problems have 1 Small input and 1 Large input. This problem has only 1 Small input. Once you have solved the Small input, you have finished solving this problem.<br /><br />Input<br /><br />The first line of the input gives the number of test cases, T. T test cases follow. Each test case starts with a line containing an integer: the answer to the first question. The next 4 lines represent the first arrangement of the cards: each contains 4 integers, separated by a single space. The next line contains the answer to the second question, and the following four lines contain the second arrangement in the same format.<br /><br />Output<br /><br />For each test case, output one line containing "Case #x: y", where x is the test case number (starting from 1).<br /><br />If there is a single card the volunteer could have chosen, y should be the number on the card. If there are multiple cards the volunteer could have chosen, y should be "Bad magician!", without the quotes. If there are no cards consistent with the volunteer's answers, y should be "Volunteer cheated!", without the quotes. The text needs to be exactly right, so consider copying/pasting it from here.<br /><br />Limits<br /><br />1 ≤ T ≤ 100.<br />1 ≤ both answers ≤ 4.<br />Each number from 1 to 16 will appear exactly once in each arrangement.<br /><br />Sample Input<br />------------<br /><br />3<br />2<br />1 2 3 4<br />5 6 7 8<br />9 10 11 12<br />13 14 15 16<br />3<br />1 2 5 4<br />3 11 6 15<br />9 10 7 12<br />13 14 8 16<br />2<br />1 2 3 4<br />5 6 7 8<br />9 10 11 12<br />13 14 15 16<br />2<br />1 2 3 4<br />5 6 7 8<br />9 10 11 12<br />13 14 15 16<br />2<br />1 2 3 4<br />5 6 7 8<br />9 10 11 12<br />13 14 15 16<br />3<br />1 2 3 4<br />5 6 7 8<br />9 10 11 12<br />13 14 15 16<br /><br />Sample Ouput<br />------------<br /><br />Case #1: 7<br />Case #2: Bad magician!<br />Case #3: Volunteer cheated!<br /></blockquote><br />For the above problem statement, my Java program parses only the input rows that are required. These 2 rows are stored in an ArrayList<integer>'s and then sent as parameters to the required method. In the method, I am only checking for the count of occurrences of every number. Based on the count, the program spits out the result, as described in the above Problem statement.<br /><br />Below is my solution in Java:<br /><br /><script src="https://gist.github.com/bchetty/11250572.js"></script><br /><br />And the link to the Github Java Gist: <a href="https://gist.github.com/bchetty/11250572">GCJ 2014 - Magic Trick Problem</a><br /></div>

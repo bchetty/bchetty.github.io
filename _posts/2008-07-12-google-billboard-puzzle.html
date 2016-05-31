@@ -1,0 +1,35 @@
+---
+layout: post
+title: Google Billboard Puzzle
+date: '2008-07-12T03:07:00.014+02:00'
+author: Babji Prashanth, Chetty
+categories:
+- algos
+- programming
+tags:
+- Eulers Number
+- algorithms
+- Google Billboard Math Puzzle
+- e
+- first 10 digit prime in consecutive digits of e
+- Google Story
+- chetty babji prashanth
+modified_time: '2013-06-03T18:52:04.083+02:00'
+thumbnail: http://3.bp.blogspot.com/_KT5j9JZRXjo/SHgKKiTWtBI/AAAAAAAAMEA/glO3revI2kM/s72-c/google_billboard.jpg
+blogger_id: tag:blogger.com,1999:blog-8063665696479699369.post-9019634069068664164
+blogger_orig_url: http://google-tale.blogspot.com/2008/07/google-billboard-puzzle.html
+---
+
+In July 2004, Google tried a innovative way of recruiting talented people, by posting a mathematical puzzle on a billboard on 'Highway 101' in the heart of silicon valley. The billboard read:<br /><br /><b>{first 10-digit prime found in consecutive digits e}.com." </b><br /><br />The answer, 7427466391.com, would lead to a Web page with yet another equation to solve, with still no sign of the firm that wanted to recruit some of the best math guys, out there. It wasn't known that it was Google, until the puzzle was cracked.<br /><br />Here's a pic of that billbaord:<br /><br />
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_KT5j9JZRXjo/SHgKKiTWtBI/AAAAAAAAMEA/glO3revI2kM/s1600-h/google_billboard.jpg">
+
+<img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="http://3.bp.blogspot.com/_KT5j9JZRXjo/SHgKKiTWtBI/AAAAAAAAMEA/glO3revI2kM/s320/google_billboard.jpg" alt="" id="BLOGGER_PHOTO_ID_5221934944059044882" border="0" /></a>
+
+<br /><br />
+
+I got to know this puzzle much later and thought of giving it a try. Without thinking much, my first idea was to use a simple, naive, brute-force approach of calculating Euler's Number (e) to around 10000 digits and then loop over the decimal part of 'e', taking 10 digits in each step and incrementing by 1 digit, in each step. I tried it and it worked, without consuming much time.<br /><br />"Euler's Number" can be calculated in a couple of ways, but I used the following formula:<br /><br />
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://2.bp.blogspot.com/_KT5j9JZRXjo/SHgRNVCOKeI/AAAAAAAAMEw/R_-zLDKl_UE/s1600-h/e.png"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="http://2.bp.blogspot.com/_KT5j9JZRXjo/SHgRNVCOKeI/AAAAAAAAMEw/R_-zLDKl_UE/s320/e.png" alt="" id="BLOGGER_PHOTO_ID_5221942688618523106" border="0" /></a>
+
+<br /><br />With the above formula, we can calculate 'e' by looping through, finding factorial and adding up 1/Facorial(n), in each and every loop. Java was my programming language of choice, but calculating e to 10000 digits precision is a problem because you cant use the normal primitives like "double", "float" or whatever to contain the huge number of digits in the decimal part of a number. So, it was pretty obvious that I had to use 'BigDecimal'.<br /><br />One more tricky part was to determine 'how many times should the program loop through , for the precision to be around 10000 digits'? I tried a couple of combinations and found that "100" would be good enough. Also it doesn't consume much time. If you try it for 10000 or more, it would probably take a couple of minutes or hours.<br /><br />Ok....I looped through "100" times in the code, calculated 'e' to a bit more than 10000 digits, in the first step. The next step, I looped through the decimal part of 'e', taking 10 char substrings (starting from the decimal point) in each step and checking whether its a prime or not. If it's a prime, the Puzzle is solved!<br /><br />Here's the Java code for finding the 'First 10 digit prime number in the consecutive digits of e':<br /><br /><script src="https://gist.github.com/bchetty/5638893.js"></script><br /><br />I ran this program and got the following output: <br /><br /><b>First 10 digit prime number in the decimal part of e : 7427466391</b><br /><br />So, thats the answer and the domain address would be <b>7427466391.com</b>" (which is defunct now).<br /><br />....and here's the "Euler's Number (e)" that I calculated using the above approach: <a href="http://google-tale.blogspot.com/2008/07/e-to-10000-digits.html">'e to 10000 digits'</a><br /><br /><b><br />PS: The above solution is a very basic, brute-force/trial-and-error approach that I used, but it very much solves the puzzle. <br /></b>

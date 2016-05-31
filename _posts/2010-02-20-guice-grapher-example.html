@@ -1,0 +1,56 @@
+---
+layout: post
+title: Guice Grapher - Example
+date: '2010-02-19T20:15:00.000-08:00'
+author: Babji Prashanth, Chetty
+categories:
+- java
+tags:
+- babji chetty
+- google guice
+- Guice grapher example
+- java dependency injection
+- babji prashanth
+- visualize guice bindings
+- graphing guice applications
+- graphviz
+- google's dependency injection framework
+modified_time: '2011-02-24T12:32:49.774-08:00'
+thumbnail: http://2.bp.blogspot.com/_KT5j9JZRXjo/S5G0ajg4s3I/AAAAAAAAakw/2k5imujJZKg/s72-c/MathAppGraph.gif
+blogger_id: tag:blogger.com,1999:blog-290045043624227719.post-6306821427870341074
+blogger_orig_url: http://java-bytes.blogspot.com/2010/02/guice-grapher-example.html
+---
+
+Guice provides a 'Grapher' module, as an extension to its framework, to visualize the bindings and the application structure. This module is not yet available in the guice-2.0 version (and is not packed in any of the jar files of this version), but you can download the source code from the <a href="http://code.google.com/p/google-guice/source/checkout">Guice's SVN repository</a> and build it for use.<br /><br />Guice's Grapher module finds all the bindings used for a particular injector and generates a <a href="http://en.wikipedia.org/wiki/DOT_language">DOT</a> file (plain text graph description language). If you have already installed 'GraphViz', you can use the GVEdit.exe to run these DOT files and generate the schematic of an application using Guice's bindings.
+
+<br /><br />
+
+For the <a href="http://java-bytes.blogspot.com/2010/02/google-guice-example.html">example from my other post</a>, I just copied all the sources under 'com.google.inject.grapher', built my project and ran the main java class, which looks as below:
+
+<br /><br />
+
+<script src="https://gist.github.com/bchetty/52e0835158d70dd58e74.js"></script>
+
+<br />
+Running this class, generated a DOT file, which when opened with GraphViz's Editor, looks like:
+
+<br /><br />
+
+<div class="separator" style="clear: both; text-align: center;">
+    <a href="{{ site.baseurl }}/img/MathAppGraph.gif" imageanchor="1" style="margin-left:1em; margin-right:1em">
+        <img border="0" height="258" width="320" src="{{ site.baseurl }}/img/MathAppGraph.gif" />
+    </a>
+</div>
+
+<br /><br />
+
+The above pic, generated from my example project doesn't show much. So, lets use the 
+<a href="http://code.google.com/p/google-guice/source/browse/trunk/extensions/grapher/test/com/google/inject/grapher/demo/">example bundled with the Guice</a> Source code (under 'extensions'). Using this example, the grapher modules, generates the DOT file, for the following pic:
+
+<br /><br />
+
+<div class="separator" style="clear: both; text-align: center;">
+    <a href="{{ site.baseurl }}/img/guiceGraph.gif" imageanchor="1" style="margin-left:1em; margin-right:1em">
+        <img border="0" height="258" width="320" src="{{ site.baseurl }}/img/guiceGraph.gif" />
+    </a>
+</div>
