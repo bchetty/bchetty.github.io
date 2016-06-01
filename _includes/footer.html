@@ -65,7 +65,8 @@
               </span>
           </a>
         </li>
-        {% endif %} {% if site.feed.enabled and site.config.feed-enabled %}
+        {% endif %} 
+        {% if site.config.feed-enabled %}
         <li>
           <a href="{{ '/feed.xml' | prepend: site.baseurl }}" title="RSS" target="_blank">
             <span class="fa-stack fa-lg animated slideInLeft">

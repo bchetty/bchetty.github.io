@@ -3,93 +3,87 @@ layout: home
 ---
 
 <header id="top" class="header">
-    <div class="center-screen">
-        <img class="img-responsive img-circle center-block avatar animated slideInDown" src="{{ site.avatar | prepend: site.baseurl }}" />
-        <br/>
-        
-        <p class="homeHello">Hello, I'm....</p>
-        <div class="homeName">
-          <h1>BABJI CHETTY</h1>
-        </div>        
-        <br/>
-        
-        <ul class="list-inline">            
-            <li><a href="{{ site.baseurl }}/aboutme" class="btn homeLinks animated slideInLeft">About Me</a></li>
-            <li><a href="{{ site.baseurl }}/blog" class="btn homeLinks animated slideInRight">My Blog</a></li>
-        </ul>
-        <br/><br/><br/>
-        
-        <ul class="list-inline">
-          {% if site.profile.facebook and site.config.fb-enabled %}
-          <li>
-            <a href="https://www.facebook.com/{{ site.profile.facebook }}" title="Facebook" target="_blank">
-              <span class="fa-stack fa-lg animated slideInLeft">
+  <div class="center-screen">
+    <img class="img-responsive img-circle center-block avatar animated slideInDown" src="{{ site.avatar | prepend: site.baseurl }}"/>
+    <br/>
+
+    <p class="homeHello">Hello, I'm....</p>
+    <div class="homeName">
+      <h1>BABJI CHETTY</h1>
+    </div>
+    <br/>
+
+    <ul class="list-inline">
+      <li><a href="{{ site.baseurl }}/aboutme" class="btn homeLinks animated slideInLeft">About Me</a></li>
+      <li><a href="{{ site.baseurl }}/blog" class="btn homeLinks animated slideInRight">My Blog</a></li>
+    </ul>
+    <br/><br/><br/>
+
+    <ul class="list-inline">
+      {% if site.profile.facebook and site.config.fb-enabled %}
+      <li>
+        <a href="https://www.facebook.com/{{ site.profile.facebook }}" title="Facebook" target="_blank">
+          <span class="fa-stack fa-lg animated slideInLeft">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
               </span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.profile.github and site.config.github-enabled %}
-          <li>
-            <a href="https://github.com/{{ site.profile.github }}" title="GitHub" target="_blank">
-              <span class="fa-stack fa-lg animated slideInRight">
+        </a>
+      </li>
+      {% endif %} {% if site.profile.github and site.config.github-enabled %}
+      <li>
+        <a href="https://github.com/{{ site.profile.github }}" title="GitHub" target="_blank">
+          <span class="fa-stack fa-lg animated slideInRight">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
               </span>
-            </a>
-          </li>
-          {% endif %}
-		  {% if site.profile.twitter and site.config.twitter-enabled %}
-          <li>
-            <a href="https://twitter.com/{{ site.profile.twitter }}" title="Twitter" target="_blank">
-              <span class="fa-stack fa-lg animated slideInLeft">
+        </a>
+      </li>
+      {% endif %} {% if site.profile.twitter and site.config.twitter-enabled %}
+      <li>
+        <a href="https://twitter.com/{{ site.profile.twitter }}" title="Twitter" target="_blank">
+          <span class="fa-stack fa-lg animated slideInLeft">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
               </span>
-            </a>
-          </li>
-          {% endif %}
-		  {% if site.profile.email and site.config.email-enabled  %}
-          <li>
-            <a href="mailto:{{ site.profile.email }}" title="Email me" target="_blank">
-              <span class="fa-stack fa-lg animated slideInRight">
+        </a>
+      </li>
+      {% endif %} {% if site.profile.email and site.config.email-enabled %}
+      <li>
+        <a href="mailto:{{ site.profile.email }}" title="Email me" target="_blank">
+          <span class="fa-stack fa-lg animated slideInRight">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
               </span>
-            </a>
-          </li>
-          {% endif %}
-		  {% if site.profile.linkedin and site.config.linkedin-enabled %}
-          <li>
-            <a href="https://linkedin.com/{{ site.profile.linkedin }}" title="LinkedIn" target="_blank">
-              <span class="fa-stack fa-lg animated slideInLeft">
+        </a>
+      </li>
+      {% endif %} {% if site.profile.linkedin and site.config.linkedin-enabled %}
+      <li>
+        <a href="https://linkedin.com/{{ site.profile.linkedin }}" title="LinkedIn" target="_blank">
+          <span class="fa-stack fa-lg animated slideInLeft">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
               </span>
-            </a>
-          </li>
-          {% endif %}
-		  {% if site.profile.stackoverflow and site.config.stackoverflow-enabled %}
-          <li>
-            <a href="https://stackoverflow.com/users/{{ site.profile.stackoverflow }}" title="StackOverflow" target="_blank">
-              <span class="fa-stack fa-lg animated slideInRight">
+        </a>
+      </li>
+      {% endif %} {% if site.profile.stackoverflow and site.config.stackoverflow-enabled %}
+      <li>
+        <a href="https://stackoverflow.com/users/{{ site.profile.stackoverflow }}" title="StackOverflow" target="_blank">
+          <span class="fa-stack fa-lg animated slideInRight">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
               </span>
-            </a>
-          </li>
-          {% endif %}
-		  {% if site.feed.enabled and site.config.feed-enabled %}
-		  <li>
-			<a href="{{ '/feed.xml' | prepend: site.baseurl }}" title="RSS" target="_blank">
-			  <span class="fa-stack fa-lg animated slideInLeft">
+        </a>
+      </li>
+      {% endif %} {% if site.config.feed-enabled %}
+      <li>
+        <a href="{{ '/feed.xml' | prepend: site.baseurl }}" title="RSS" target="_blank">
+          <span class="fa-stack fa-lg animated slideInLeft">
 				<i class="fa fa-circle fa-stack-2x"></i>
 				<i class="fa fa-rss fa-stack-1x fa-inverse"></i>
 			  </span>
-			</a>
-		  </li>		
-          {% endif %}		  
-        </ul>
-    </div>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
 </header>
