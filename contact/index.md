@@ -2,7 +2,6 @@
 layout: container-template
 comments: false
 ---
-<br/>
 
 Feel like writing something to me?!<br/>
 Use the below form and feel free to shoot a message! :)
