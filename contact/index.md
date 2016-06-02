@@ -6,9 +6,7 @@ comments: false
 Feel like writing something to me?!<br/>
 Use the below form and feel free to shoot a message! :)
 
-<br/>
-
-<div class="panel panel-default shadow1">
+<div class="panel panel-default shadow1" style="margin-top: 15px;">
       <div class="panel-heading">
         <h4 class="text-primary">Contact</h4>
       </div>
