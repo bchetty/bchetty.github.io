@@ -3,15 +3,14 @@ layout: container-template
 title: About me
 comments: false
 ---
-<br/>
+
 <div class="row">
     <div class="avatar center-block">
         <img class="img-responsive img-circle center-block animated bounceIn" src="{{ site.avatar | prepend: site.baseurl }}" />
     </div>        
 </div>
-<br/>
 
-<p>
+<p style="margin-top: 10px;">
 My name is <b>Babji Prashanth, Chetty</b> (aka Prashanth / Bob). I have a Bachelors degree in 'Computer Science & Engineering' and 
 have been programming / coding / developing business software applications (for work) and fun stuff (pet projects and other stuff 
 for learning, etc) for more than 10 years. 
