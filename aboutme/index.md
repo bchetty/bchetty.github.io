@@ -11,7 +11,7 @@ comments: false
 </div>
 
 <p style="margin-top: 10px;">
-My name is <b>Babji Prashanth, Chetty</b> (aka Prashanth / Bob). I have a Bachelors degree in 'Computer Science & Engineering' and 
+My name is <b>Babji Prashanth, Chetty</b>. I have a Bachelors degree in 'Computer Science & Engineering' and 
 have been programming / coding / developing business software applications (for work) and fun stuff (pet projects and other stuff 
 for learning, etc) for more than 10 years. 
 <br/><br/>
