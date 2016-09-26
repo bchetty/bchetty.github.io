@@ -74,7 +74,10 @@ google_analytics: "UA-74990483-1"
 # Set these options as you need (For more information, check Jekyll's site)
 timezone: "Europe/Berlin"
 markdown: kramdown
-highlighter: rouge
+#highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 permalink: /blog/:title
 paginate: 5
 paginate_path: blog/page:num/
