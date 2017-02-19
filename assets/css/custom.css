@@ -1,5 +1,5 @@
 
-/* Custom CSS styles 
+/* Custom CSS styles
 ----------------------------------------------- */
 html {
   min-height:100%;
@@ -7,7 +7,7 @@ html {
 }
 body {
   min-height:100%;
-  
+
   /* For Fixed Nav Bar */
   padding-top: 70px;
   /* Margin bottom by footer height */
@@ -19,7 +19,7 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 150px;
-  background-color: #f5f5f5;  
+  background-color: #f5f5f5;
 }
 .footerBox {
   text-align: center;
@@ -50,13 +50,13 @@ body {
  font-family: GillSans, Calibri, Trebuchet, sans-serif;
  font-size: 16px;
 }
-h1,h2,h3,h4,h5 { 
+h1,h2,h3,h4,h5 {
   font-family: 'Indie Flower', cursive;
   font-weight: 800;
 }
 a {
   color: #008AFF;
-  font-family: 'Indie Flower', cursive;  
+  font-family: 'Indie Flower', cursive;
 }
 a:hover,
 a:focus {
@@ -85,20 +85,20 @@ a:focus {
   -webkit-box-shadow: 0 4px 6px -6px #222;
   -moz-box-shadow: 0 4px 6px -6px #222;
   box-shadow: 0 4px 6px -6px #222;
-  
+
   padding: 10px;
 }
 .readMoreLink {
-  font-size: 16px;  
+  font-size: 16px;
 }
 .postMeta {
-  
+
 }
 .postPreviewContent {
-  
+
 }
 .profileIcons {
-  
+
 }
 
 /* Large desktops and laptops */
@@ -107,7 +107,7 @@ a:focus {
     font-size: 20px;
   }
   .avatar {
-    height: 100px;
+    height: auto;
     width: 100px;
   }
 }
@@ -118,7 +118,7 @@ a:focus {
     font-size: 18px;
   }
   .avatar {
-    height: 100px;
+    height: auto;
     width: 100px;
   }
 }
@@ -126,15 +126,15 @@ a:focus {
 /* Portrait tablets and small desktops */
 @media (min-width: 768px) and (max-width: 991px) {
   .avatar {
-    height: 100px;
+    height: auto;
     width: 100px;
   }
 }
 
 /* Landscape phones and portrait tablets */
-@media (max-width: 767px) {  
+@media (max-width: 767px) {
   .avatar {
-    height: 50px;
+    height: auto;
     width: 50px;
   }
 }
@@ -142,7 +142,7 @@ a:focus {
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
   .avatar {
-    height: 50px;
+    height: auto;
     width: 50px;
   }
 }

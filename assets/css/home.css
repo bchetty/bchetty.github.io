@@ -16,9 +16,9 @@ body {
     -o-background-size: cover;
 }
 #bg {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
+  position: fixed;
+  top: 0;
+  left: 0;
 
   /* Preserve aspet ratio */
   min-width: 100%;
@@ -40,15 +40,15 @@ body {
     padding: 15px;
     width: 50%;
     margin: auto;
-    
-    -webkit-border-radius: 50%; 
+
+    -webkit-border-radius: 50%;
    -moz-border-radius: 50%;
    border-radius: 50%;
-   
+
    box-shadow: 1px 2px 6px 2px wheat;
 }
 .homeHello {
-    color: white;    
+    color: white;
 }
 
 /* Large desktops and laptops */
@@ -57,7 +57,7 @@ body {
     font-size: 20px;
   }
   .avatar {
-    height: 100px;
+    height: auto;
     width: 100px;
   }
 }
@@ -68,7 +68,7 @@ body {
     font-size: 18px;
   }
   .avatar {
-    height: 100px;
+    height: auto;
     width: 100px;
   }
 }
@@ -76,15 +76,15 @@ body {
 /* Portrait tablets and small desktops */
 @media (min-width: 768px) and (max-width: 991px) {
   .avatar {
-    height: 100px;
+    height: auto;
     width: 100px;
   }
 }
 
 /* Landscape phones and portrait tablets */
-@media (max-width: 767px) {  
+@media (max-width: 767px) {
   .avatar {
-    height: 50px;
+    height: auto;
     width: 50px;
   }
 }
@@ -92,7 +92,7 @@ body {
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
   .avatar {
-    height: 50px;
+    height: auto;
     width: 50px;
   }
 }

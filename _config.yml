@@ -1,6 +1,6 @@
 # Build settings
 # Gems
-gems: 
+gems:
 - jekyll-paginate
 - jekyll-feed
 - jekyll-sitemap
@@ -27,7 +27,7 @@ desc: Babji, Chetty
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/assets/img/bchetty.jpg"
+avatar: "/assets/img/bchetty_rounded1.png"
 
 # List of links in the navigation bar
 nav-links:
@@ -37,11 +37,11 @@ nav-links:
   Photos: "photos"
   About Me: "aboutme"
   Archive: "archive"
-  Contact: "contact"  
-  
+  Contact: "contact"
+
 # --- Footer options --- #
 
-# If the values are empty, they are ignored 
+# If the values are empty, they are ignored
 profile:
   name: Babji Chetty
   email: ""
