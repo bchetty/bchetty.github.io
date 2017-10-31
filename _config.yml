@@ -1,6 +1,6 @@
 # Build settings
 # Gems
-gems:
+plugins:
 - jekyll-paginate
 - jekyll-feed
 - jekyll-sitemap
